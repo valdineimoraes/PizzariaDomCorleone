@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="valdinei.domcorleone.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="281dp"
+        android:layout_height="237dp"
+        app:srcCompat="@drawable/domcorleone"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_editor_absoluteX="36dp" />
+
+    <EditText
+        android:id="@+id/editTextUser"
+        android:layout_width="262dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Usuario"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="261dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="Senha"
+        android:hint="Senha"
+        app:layout_constraintLeft_toLeftOf="@+id/editTextUser"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUser" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="204dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="19dp"
+        android:background="@android:color/holo_green_dark"
+        android:text="Logar"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/editTextPassword"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
+        tools:layout_editor_absoluteX="78dp" />
+
+    <TextView
+        android:id="@+id/textViewCriar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="66dp"
+        android:layout_marginTop="23dp"
+        android:text="Esqueci a senha..Criar Conta"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
+
+    <Button
+        android:id="@+id/buttonCancelarLogin"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="25dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="19dp"
+        android:background="@android:color/holo_red_dark"
+        android:text="X"
+        app:layout_constraintLeft_toRightOf="@+id/buttonLogin"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+
+</android.support.constraint.ConstraintLayout>
