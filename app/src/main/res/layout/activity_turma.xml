@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorButtonNormal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Turma"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/txtNomeTurma"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Nome da Turma"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/edtSalaNumeroTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Nº da Sala"
+        android:inputType="number"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/edtTotalAlunosSala"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Total Max de Alunos"
+        android:inputType="number"
+        android:textSize="12sp" />
+
+    <Spinner
+        android:id="@+id/spinnerProfessores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnVoltarTurma"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary"
+            android:text="Voltar" />
+
+        <Button
+            android:id="@+id/btnEditarTurma"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/btnSalvarTurma"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@android:color/holo_green_dark"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/btnExcluirTurma"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:text="Excluir" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewTurma"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

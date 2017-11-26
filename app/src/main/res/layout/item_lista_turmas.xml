@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtCodigoListaTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:text="Codigo" />
+
+    <TextView
+        android:id="@+id/txtNomeListaTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtCodigoListaTurma"
+        android:layout_toRightOf="@+id/txtCodigoListaTurma"
+        android:text="Nome" />
+
+    <TextView
+        android:id="@+id/txtTotalAlunosListaTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtSalaListaTurma"
+        android:layout_toRightOf="@+id/txtSalaListaTurma"
+        android:text="totalAlunos" />
+
+    <TextView
+        android:id="@+id/txtSalaListaTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtNomeListaTurma"
+        android:layout_toRightOf="@+id/txtNomeListaTurma"
+        android:text="Sala" />
+
+    <TextView
+        android:id="@+id/txtProfessorListaTurma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Professor"
+        android:layout_toRightOf="@+id/txtTotalAlunosListaTurma"
+        android:layout_toEndOf="@+id/txtTotalAlunosListaTurma"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>

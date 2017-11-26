@@ -1,29 +1,38 @@
 package Model;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import java.io.Serializable;
+
 /**
  * Created by valdinei on 04/11/17.
  */
 
-public class Usuario {
+public class Usuario  {
 
     private int id;
-    private String nomeCompleto;
+    private String nome;
     private String usuario;
     private String senha;
     private String cargo;
     private String telefone;
 
-    public Usuario(String nomeCompleto, String usuario, String senha, String cargo, String telefone) {
-        this.nomeCompleto = nomeCompleto;
+    //Construtor para ser instanciada a classe em alguma outra classe do projeto
+    public Usuario() {
+
+    }
+
+    public Usuario(int id, String nome, String usuario, String senha, String cargo, String telefone) {
+        this.id = id;
+        this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
         this.cargo = cargo;
         this.telefone = telefone;
     }
 
-    public Usuario(int id, String nomeCompleto, String usuario, String senha, String cargo, String telefone) {
-        this.id = id;
-        this.nomeCompleto = nomeCompleto;
+    public Usuario(String nome, String usuario, String senha, String cargo, String telefone) {
+        this.nome = nome;
         this.usuario = usuario;
         this.senha = senha;
         this.cargo = cargo;
@@ -31,19 +40,19 @@ public class Usuario {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getUsuario() {
@@ -77,4 +86,16 @@ public class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @Override
+    public boolean equals(Object o){
+        return this.id == ((Usuario)o).id;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.id;
+    }
+
+
 }

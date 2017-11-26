@@ -1,18 +1,15 @@
 package bd;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by valdinei on 16/10/17.
- */
+import Model.Usuario;
 
 public class CriaBanco extends SQLiteOpenHelper {
 
-    private static final String NOME_BANCO = "banco_dom_corleone";
-    private static final int VERSAO = 1;
+    private static final String NOME_BANCO = "system_schools";
+    private static final int VERSAO = 2;
 
     public CriaBanco(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -20,20 +17,15 @@ public class CriaBanco extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
-        db.execSQL("CREATE TABLE usuarios (" +
-                "id INTEGER PRIMARY KEY, " +
-                "nome_completo TEXT, " +
-                "usuario TEXT, " +
-                "senha TEXT, " +
-                "cargo TEXT, " +
-                "telefone TEXT)"
-        );
-
+        db.execSQL(ScriptSQL.getCreateUsuarios());
+        db.execSQL(ScriptSQL.getCreateAlunos());
+        db.execSQL(ScriptSQL.getCreateProfessores());
+        db.execSQL(ScriptSQL.getCreateTurmas());
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
 }

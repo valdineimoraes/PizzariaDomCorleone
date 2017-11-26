@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtCodigoLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:text="Codigo" />
+
+    <TextView
+        android:id="@+id/txtNomeLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtCodigoLista"
+        android:layout_toRightOf="@+id/txtCodigoLista"
+        android:text="Nome" />
+
+    <TextView
+        android:id="@+id/txtTelefoneLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtNomeLista"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtNomeLista"
+        android:layout_toRightOf="@+id/txtNomeLista"
+        android:text="telefone" />
+
+    <TextView
+        android:id="@+id/txtCargoLista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/txtTelefoneLista"
+        android:layout_toRightOf="@+id/txtTelefoneLista"
+        android:text="Cargo" />
+
+</RelativeLayout>

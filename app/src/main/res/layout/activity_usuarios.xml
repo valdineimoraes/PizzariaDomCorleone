@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorButtonNormal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cadastro de usuarios"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/txtNomeCompletoUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Nome"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/txtUsuarioUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/txtPasswordUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/txtCargoUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Cargo"
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/txtPhoneUser"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:ems="10"
+        android:hint="Fone"
+        android:inputType="phone"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnVoltarUser"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@color/colorPrimary"
+            android:text="Voltar" />
+
+        <Button
+            android:id="@+id/btnEditarUser"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_orange_light"
+            android:text="Editar" />
+
+        <Button
+            android:id="@+id/btnSalvarUser"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:background="@android:color/holo_green_dark"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/btnExcluirUser"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@android:color/holo_red_dark"
+            android:text="Excluir" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewUsuarios"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
