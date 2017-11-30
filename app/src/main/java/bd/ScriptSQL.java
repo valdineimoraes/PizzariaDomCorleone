@@ -38,7 +38,8 @@ public class ScriptSQL {
         stringBuilder.append("CREATE TABLE Turmas( ");
         stringBuilder.append("_id INTEGER PRIMARY KEY, ");
         stringBuilder.append("nome VARCHAR(100), ");
-        stringBuilder.append("total_aluno INTEGER, ");
+        stringBuilder.append("sala VARCHAR(10), ");
+        stringBuilder.append("total_aluno VARCHAR(10), ");
         stringBuilder.append("professor INTEGER, ");
         stringBuilder.append("FOREIGN KEY(professor) REFERENCES Professores(_id)); ");
 

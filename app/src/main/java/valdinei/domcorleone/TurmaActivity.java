@@ -1,10 +1,13 @@
 package valdinei.domcorleone;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Model.DAO.ProfessorDAO;
 import Model.DAO.TurmaDAO;
@@ -26,8 +30,7 @@ import Model.Usuario;
 
 public class TurmaActivity extends AppCompatActivity {
 
-    TextView nomeTurma;
-    EditText salaNumero, totalAlunos;
+    EditText salaNumero, totalAlunos, nomeTurma;
     Spinner spinnerProfessor;
     Button btnSalvarTurma, btnEditarTurma, btnVoltarTurma, btnExcluirTurma;
     ListView lsViewTurma;
@@ -42,9 +45,9 @@ public class TurmaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_turma);
 
-        nomeTurma = (TextView) findViewById(R.id.txtNomeTurma);
-        salaNumero = (EditText) findViewById(R.id.edtSalaNumeroTurma);
-        totalAlunos = (EditText) findViewById(R.id.edtTotalAlunosSala);
+        nomeTurma = (EditText) findViewById(R.id.edtCadNomeTurma);
+        salaNumero = (EditText) findViewById(R.id.edtCadSalaNumeroTurma);
+        totalAlunos = (EditText) findViewById(R.id.edtCadTotalAlunosTurma);
 
         spinnerProfessor = (Spinner) findViewById(R.id.spinnerProfessores);
 
@@ -64,12 +67,14 @@ public class TurmaActivity extends AppCompatActivity {
         btnSalvarTurma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Professor professor = (Professor) spinnerProfessor.getSelectedItem();
                 turma = new Turma();
 
                 turma.setNome(nomeTurma.getText().toString());
                 turma.setTotalAlunos(Integer.parseInt(totalAlunos.getText().toString()));
                 turma.setSala(Integer.parseInt(salaNumero.getText().toString()));
-                // turma.setProfessor(Integer.parseInt(spinnerProfessor.getSelectedItem()));
+                turma.setProfessor(professor.getId());
 
                 TurmaDAO turmaDAO = new TurmaDAO(getApplicationContext());
 
@@ -95,6 +100,7 @@ public class TurmaActivity extends AppCompatActivity {
                     builder.show();
                     limparCampos();
                     turma = null;
+                    atualizaListaTurma();
 
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(TurmaActivity.this);
@@ -136,12 +142,13 @@ public class TurmaActivity extends AppCompatActivity {
                         });
                         builder.show();
                     }else {
+                        Professor professor = (Professor) spinnerProfessor.getSelectedItem();
                         TurmaDAO turmaDAO = new TurmaDAO(getApplicationContext());
 
                         turma.setNome(nomeTurma.getText().toString());
                         turma.setTotalAlunos(Integer.parseInt(totalAlunos.getText().toString()));
                         turma.setSala(Integer.parseInt(salaNumero.getText().toString()));
-                        //turma.setProfessor(spinnerProfessor.getSelectedItem().toString());
+                        turma.setProfessor(professor.getId());
 
                         turmaDAO.updateTurma(turma);
 
@@ -154,6 +161,7 @@ public class TurmaActivity extends AppCompatActivity {
                             }
                         });
                         builder.show();
+                        atualizaListaTurma();
 
                     }
                 }
@@ -190,22 +198,20 @@ public class TurmaActivity extends AppCompatActivity {
                     builder.show();
                     limparCampos();
                     turma = null;
+                    atualizaListaTurma();
 
                 }
             }
         });
 
-        //============================================ spinner Professor populado
+        //=============== spinner Professor populado
 
         ProfessorDAO professorDAO = new ProfessorDAO(this);
-        optionsProfessores = professorDAO.getProfessoresSpinner();
+        List<Professor> labelsProf= professorDAO.getProfessoSpinner();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, R.layout.spinner_professores, optionsProfessores);
+        ArrayAdapter profAdapter = new ArrayAdapter (this, R.layout.support_simple_spinner_dropdown_item, labelsProf);
 
-        spinnerProfessor.setAdapter(adapter);
-//
-//        ListAdapterProfessor listAdapterProfessor = new ListAdapterProfessor(this,optionsProfessores);
-//        spinnerProfessor.setAdapter(listAdapterProfessor);
+        spinnerProfessor.setAdapter(profAdapter);
 
 
 
@@ -230,9 +236,9 @@ public class TurmaActivity extends AppCompatActivity {
         turma = turmaArrayList.get(i);
 
         nomeTurma.setText(turma.getNome());
-        salaNumero.setText(turma.getSala());
-        totalAlunos.setText(turma.getTotalAlunos());
-        spinnerProfessor.setSelection(indiceProfessor(turma));
+        salaNumero.setText(String.valueOf(turma.getSala()));
+        totalAlunos.setText(String.valueOf(turma.getTotalAlunos()));
+        //spinnerProfessor.setSelection(indiceProfessor(turma));
     }
 
     public void limparCampos(){
@@ -240,18 +246,51 @@ public class TurmaActivity extends AppCompatActivity {
         nomeTurma.setText("");
         salaNumero.setText("");
         totalAlunos.setText("");
-        spinnerProfessor.setSelection(0);
+        //spinnerProfessor.setSelection(0);
     }
-//
-    public int indiceProfessor(Turma turma){
-        int idProfessor = turma.getProfessor();
 
-        for (int i = 0; i < optionsProfessores.size(); i++) {
-            if (idProfessor == optionsProfessores.get(i).getId()){
-                return i;
-            }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.meu_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.menu_alunos){
+            Intent menuAluno = new Intent(TurmaActivity.this, AlunosActivity.class);
+            startActivity(menuAluno);
+            return true;
         }
-        return 0;
+
+        if(id == R.id.menu_professores){
+            Intent menuProfessores = new Intent(TurmaActivity.this, ProfessorActivity.class);
+            startActivity(menuProfessores);
+            return true;
+        }
+
+        if(id == R.id.menu_turmas){
+            Intent menuTurma = new Intent(TurmaActivity.this, TurmaActivity.class);
+            startActivity(menuTurma);
+            return true;
+        }
+
+        if(id == R.id.menu_usuario){
+            Intent menuUsuario = new Intent(TurmaActivity.this, UsuariosActivity.class);
+            startActivity(menuUsuario);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void atualizaListaTurma(){
+        TurmaDAO turmaDAO = new TurmaDAO(this);
+        turmaArrayList = turmaDAO.getTurmas();
+
+        lsViewTurma.setAdapter(
+                new ListAdapterTurma(this, turmaArrayList)
+        );
     }
 
 }

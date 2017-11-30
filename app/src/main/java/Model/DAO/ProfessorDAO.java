@@ -8,8 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Model.Professor;
+import Model.Turma;
 import bd.CriaBanco;
 
 public class ProfessorDAO {
@@ -98,37 +100,62 @@ public class ProfessorDAO {
         return profArray;
     }
 
-    public ArrayList<Professor> getProfessoresSpinner(){
+    public List<Professor> getProfessoSpinner(){
+
+        List<Professor> listProf = new ArrayList<Professor>();
 
         CriaBanco criaBanco = new CriaBanco(context);
         SQLiteDatabase db = criaBanco.getReadableDatabase();
 
-        ArrayList<Professor> profArraySpinner = new ArrayList<>();
-        String getProf = "SELECT nome FROM " + NOME_TABELA + " ORDER by nome ASC";
+        String selectQuery = "SELECT * FROM "+ NOME_TABELA;
 
-        try {
-            Cursor cursor = db.rawQuery(getProf, null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
-            if (cursor.moveToFirst()){
-                do {
-                    Professor prof = new Professor();
-                    prof.setNome(cursor.getString(0));
-                    profArraySpinner.add(prof);
-
-                }while (cursor.moveToNext());
-
-            }
-
-        }catch (Exception ex){
-            ex.printStackTrace();
-            return null;
-        }finally {
-
-            db.close();
+        if (cursor.moveToFirst()){
+            do {
+                listProf.add(new Professor(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3)));
+            }while (cursor.moveToNext());
         }
-        Log.v("profSpQtde", String.valueOf(profArraySpinner.size()));
-        return profArraySpinner;
+
+        cursor.close();
+        db.close();
+
+        Log.v("profSpi", "tamanho"+listProf.size());
+        return listProf;
+
     }
+
+//    public ArrayList<Professor> getProfessoresSpinner(){
+//
+//        CriaBanco criaBanco = new CriaBanco(context);
+//        SQLiteDatabase db = criaBanco.getReadableDatabase();
+//
+//        ArrayList<Professor> profArraySpinner = new ArrayList<>();
+//        String getProf = "SELECT nome FROM " + NOME_TABELA + " ORDER by nome ASC";
+//
+//        try {
+//            Cursor cursor = db.rawQuery(getProf, null);
+//
+//            if (cursor.moveToFirst()){
+//                do {
+//                    Professor prof = new Professor();
+//                    prof.setNome(cursor.getString(0));
+//                    profArraySpinner.add(prof);
+//
+//                }while (cursor.moveToNext());
+//
+//            }
+//
+//        }catch (Exception ex){
+//            ex.printStackTrace();
+//            return null;
+//        }finally {
+//
+//            db.close();
+//        }
+//        Log.v("profSpQtde", String.valueOf(profArraySpinner.size()));
+//        return profArraySpinner;
+//    }
 
 
 

@@ -17,7 +17,7 @@
         android:textColor="@color/colorPrimary" />
 
     <EditText
-        android:id="@+id/txtNomeTurma"
+        android:id="@+id/edtCadNomeTurma"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:ems="10"
@@ -26,7 +26,7 @@
         android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/edtSalaNumeroTurma"
+        android:id="@+id/edtCadSalaNumeroTurma"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:ems="10"
@@ -35,7 +35,7 @@
         android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/edtTotalAlunosSala"
+        android:id="@+id/edtCadTotalAlunosTurma"
         android:layout_width="151dp"
         android:layout_height="wrap_content"
         android:ems="10"

@@ -58,4 +58,9 @@ public class Professor {
     public void setFormacao(String formacao) {
         this.formacao = formacao;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 }

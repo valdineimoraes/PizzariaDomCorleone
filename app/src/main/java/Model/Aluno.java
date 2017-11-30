@@ -12,24 +12,27 @@ public class Aluno implements Serializable{
     private String telefone;
     private String endereco;
     private String responsavel;
+    private int turma;
 
     public Aluno() {
     }
 
-    public Aluno(int id, String nome, String telefone, String endereco, String responsavel) {
+    public Aluno(int id, String nome, String telefone, String endereco, String responsavel, int turma) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.responsavel = responsavel;
+        this.turma = turma;
     }
 
 
-    public Aluno(String nome, String telefone, String endereco, String responsavel) {
+    public Aluno(String nome, String telefone, String endereco, String responsavel, int turma) {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
         this.responsavel = responsavel;
+        this.turma = turma;
     }
 
     public int getId() {
@@ -70,6 +73,14 @@ public class Aluno implements Serializable{
 
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public int getTurma() {
+        return turma;
+    }
+
+    public void setTurma(int turma) {
+        this.turma = turma;
     }
 
     @Override

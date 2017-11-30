@@ -43,15 +43,14 @@ public class ListAdapterTurma extends ArrayAdapter<Turma> {
         TextView txtNome = (TextView) convertView.findViewById(R.id.txtNomeListaTurma);
         txtNome.setText(itemPosicao.getNome());
 
-        TextView txtTotalAlunos = (TextView) convertView.findViewById(R.id.txtTotalAlunosListaTurma);
-        txtTotalAlunos.setText(itemPosicao.getTotalAlunos());
-
         TextView txtSala = (TextView) convertView.findViewById(R.id.txtSalaListaTurma);
-        txtSala.setText(itemPosicao.getSala());
+        txtSala.setText(String.valueOf(itemPosicao.getSala()));
+
+        TextView txtTotalAlunos = (TextView) convertView.findViewById(R.id.txtTotalAlunosListaTurma);
+        txtTotalAlunos.setText(String.valueOf(itemPosicao.getTotalAlunos()));
 
         TextView txtProfessor = (TextView) convertView.findViewById(R.id.txtProfessorListaTurma);
-        txtCodigo.setText(itemPosicao.getProfessorNome());
-
+        txtProfessor.setText(String.valueOf(itemPosicao.getProfessor()));
 
         return convertView;
     }

@@ -11,7 +11,6 @@ public class Turma {
     private int totalAlunos;
     private int sala;
     private int professor;
-    private String professorNome;
 
     public Turma() {
     }
@@ -22,6 +21,7 @@ public class Turma {
         this.totalAlunos = totalAlunos;
         this.sala = sala;
         this.professor = professor;
+
     }
 
     public Turma(String nome, int totalAlunos, int sala, int professor) {
@@ -29,7 +29,6 @@ public class Turma {
         this.totalAlunos = totalAlunos;
         this.sala = sala;
         this.professor = professor;
-
     }
 
     public int getId() {
@@ -66,14 +65,6 @@ public class Turma {
 
     public int getProfessor() {
         return professor;
-    }
-
-    public String getProfessorNome() {
-        return professorNome;
-    }
-
-    public void setProfessorNome(String professorNome) {
-        this.professorNome = professorNome;
     }
 
     public void setProfessor(int professor) {

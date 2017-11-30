@@ -46,9 +46,9 @@
         android:id="@+id/txtProfessorListaTurma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Professor"
-        android:layout_toRightOf="@+id/txtTotalAlunosListaTurma"
+        android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/txtTotalAlunosListaTurma"
-        android:layout_alignParentTop="true" />
+        android:layout_toRightOf="@+id/txtTotalAlunosListaTurma"
+        android:text="TextView" />
 
 </RelativeLayout>

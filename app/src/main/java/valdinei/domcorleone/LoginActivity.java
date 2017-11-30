@@ -48,8 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         btnCancelarLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent abreVoltarTelaMain = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(abreVoltarTelaMain);
+                System.exit(0);
             }
         });
 

@@ -26,7 +26,7 @@
         android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/txtTelefoneAlunoLista"
+        android:id="@+id/txtTelefoneAluno"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:ems="10"
@@ -44,13 +44,18 @@
         android:textSize="12sp" />
 
     <EditText
-        android:id="@+id/txtEnderecoAlunoLista"
+        android:id="@+id/txtEnderecoAluno"
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:ems="10"
         android:hint="Endereço"
         android:inputType="textPersonName"
         android:textSize="12sp" />
+
+    <Spinner
+        android:id="@+id/spinnerAlunoTurma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

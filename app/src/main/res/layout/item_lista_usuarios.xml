@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtCodigoLista"
+        android:id="@+id/txtCodigoListaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -13,33 +13,51 @@
         android:text="Codigo" />
 
     <TextView
-        android:id="@+id/txtNomeLista"
+        android:id="@+id/txtNomeListaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:layout_toEndOf="@+id/txtCodigoLista"
-        android:layout_toRightOf="@+id/txtCodigoLista"
+        android:layout_toEndOf="@+id/txtCodigoListaUser"
+        android:layout_toRightOf="@+id/txtCodigoListaUser"
         android:text="Nome" />
 
     <TextView
-        android:id="@+id/txtTelefoneLista"
+        android:id="@+id/txtUsuarioListaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtNomeLista"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:layout_toEndOf="@+id/txtNomeLista"
-        android:layout_toRightOf="@+id/txtNomeLista"
-        android:text="telefone" />
+        android:layout_toEndOf="@+id/txtNomeListaUser"
+        android:layout_toRightOf="@+id/txtNomeListaUser"
+        android:text="Usuario" />
 
     <TextView
-        android:id="@+id/txtCargoLista"
+        android:id="@+id/txtCargoListaUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/txtTelefoneLista"
-        android:layout_toRightOf="@+id/txtTelefoneLista"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/txtUsuarioListaUser"
+        android:layout_toRightOf="@+id/txtUsuarioListaUser"
         android:text="Cargo" />
+
+    <TextView
+        android:id="@+id/txtTelefoneListaUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txtCargoListaUser"
+        android:layout_toEndOf="@+id/txtCargoListaUser"
+        android:layout_toRightOf="@+id/txtCargoListaUser"
+        android:text="Telefone" />
+
+    <TextView
+        android:id="@+id/txtSenhaListaUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/txtTelefoneListaUser"
+        android:layout_toRightOf="@+id/txtTelefoneListaUser"
+        android:text="Senha" />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@ import Model.Usuario;
 public class CriaBanco extends SQLiteOpenHelper {
 
     private static final String NOME_BANCO = "system_schools";
-    private static final int VERSAO = 2;
+    private static final int VERSAO = 6;
 
     public CriaBanco(Context context) {
         super(context, NOME_BANCO, null, VERSAO);
@@ -18,13 +18,20 @@ public class CriaBanco extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(ScriptSQL.getCreateUsuarios());
+        db.execSQL(ScriptSQL.getCreateTurmas());
         db.execSQL(ScriptSQL.getCreateAlunos());
         db.execSQL(ScriptSQL.getCreateProfessores());
-        db.execSQL(ScriptSQL.getCreateTurmas());
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE Usuarios");
+        db.execSQL("DROP TABLE Professores");
+        db.execSQL("DROP TABLE Alunos");
+        db.execSQL("DROP TABLE Turmas");
+
+        onCreate(db);
 
     }
 

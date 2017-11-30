@@ -34,6 +34,7 @@ public class AlunoDAO {
             values.put("telefone", aluno.getTelefone());
             values.put("responsavel", aluno.getResponsavel());
             values.put("endereco", aluno.getEndereco());
+            values.put("turma", aluno.getTurma());
             db.insert(NOME_TABELA,null,values);
             return true;
         }catch (Exception ex){
@@ -56,6 +57,7 @@ public class AlunoDAO {
             values.put("telefone", aluno.getTelefone());
             values.put("responsavel", aluno.getResponsavel());
             values.put("endereco", aluno.getEndereco());
+            values.put("turma", aluno.getTurma());
             db.update(NOME_TABELA, values, where,null);
             return true;
         }catch (Exception ex){
@@ -86,6 +88,7 @@ public class AlunoDAO {
                     u.setTelefone(cursor.getString(2));
                     u.setResponsavel(cursor.getString(3));
                     u.setEndereco(cursor.getString(4));
+                    u.setTurma(cursor.getInt(5));
                     alunoArray.add(u);
 
                 }while (cursor.moveToNext());

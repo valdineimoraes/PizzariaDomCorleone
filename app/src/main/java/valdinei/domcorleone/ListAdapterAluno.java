@@ -42,10 +42,10 @@ public class ListAdapterAluno extends ArrayAdapter<Aluno> {
         TextView txtNome = (TextView) convertView.findViewById(R.id.txtNomeAlunoLista);
         txtNome.setText(itemPosicao.getNome());
 
-        TextView txtTelefone = (TextView) convertView.findViewById(R.id.txtTelefoneAlunoLista);
+        TextView txtTelefone = (TextView) convertView.findViewById(R.id.txtTelefoneAluno);
         txtTelefone.setText(itemPosicao.getTelefone());
 
-        TextView txtEndereco = (TextView) convertView.findViewById(R.id.txtEnderecoAlunoLista);
+        TextView txtEndereco = (TextView) convertView.findViewById(R.id.txtEnderecoAluno);
         txtEndereco.setText(itemPosicao.getEndereco());
 
         TextView txtResponsavel = (TextView) convertView.findViewById(R.id.txtResponsavelAlunoLista);

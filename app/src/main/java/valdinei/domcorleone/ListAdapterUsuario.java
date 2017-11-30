@@ -1,8 +1,6 @@
 package valdinei.domcorleone;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -38,18 +36,23 @@ public class ListAdapterUsuario extends ArrayAdapter<Usuario> {
 
         convertView = LayoutInflater.from(this.context).inflate(R.layout.item_lista_usuarios, null);
 
-        TextView txtCodigo = (TextView) convertView.findViewById(R.id.txtCodigoLista);
+        TextView txtCodigo = (TextView) convertView.findViewById(R.id.txtCodigoListaUser);
         txtCodigo.setText(String.valueOf(itemPosicao.getId()));
 
-        TextView txtNome = (TextView) convertView.findViewById(R.id.txtNomeLista);
+        TextView txtNome = (TextView) convertView.findViewById(R.id.txtNomeListaUser);
         txtNome.setText(itemPosicao.getNome());
 
-        TextView txtTelefone = (TextView) convertView.findViewById(R.id.txtTelefoneLista);
-        txtTelefone.setText(itemPosicao.getTelefone());
+        TextView txtUsuario = (TextView) convertView.findViewById(R.id.txtUsuarioListaUser);
+        txtUsuario.setText(itemPosicao.getUsuario());
 
-        TextView txtCargo = (TextView) convertView.findViewById(R.id.txtCargoLista);
+        TextView txtSenha = (TextView) convertView.findViewById(R.id.txtSenhaListaUser);
+        txtSenha.setText(itemPosicao.getCargo());
+
+        TextView txtCargo = (TextView) convertView.findViewById(R.id.txtCargoListaUser);
         txtCargo.setText(itemPosicao.getCargo());
 
+        TextView txtTelefone = (TextView) convertView.findViewById(R.id.txtTelefoneListaUser);
+        txtTelefone.setText(itemPosicao.getTelefone());
 
         return convertView;
     }

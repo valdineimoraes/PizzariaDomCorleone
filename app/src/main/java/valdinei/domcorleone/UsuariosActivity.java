@@ -6,6 +6,8 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,7 @@ import Model.Usuario;
 public class UsuariosActivity extends AppCompatActivity {
 
 
-    EditText editTextCodigo, editTextNomeCompleto, editTextUsuario, editTextSenha, editTextCargo, editTextTelefone;
+    EditText nomeCompletoUser, usuarioUser, senhaUser, cargoUser, telefoneUser;
     Button btnSalvarUser, btnVoltarUser, btnExcluirUser, btnEditarUser;
     ListView listUser;
     ArrayList<Usuario> usuarios;
@@ -35,12 +37,11 @@ public class UsuariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuarios);
 
-        //editTextCodigo = (EditText) findViewById(R.id.txtCodigoUser);
-        editTextNomeCompleto = (EditText) findViewById(R.id.txtNomeCompletoUser);
-        editTextUsuario = (EditText) findViewById(R.id.txtUsuarioUser);
-        editTextSenha = (EditText) findViewById(R.id.txtPasswordUser);
-        editTextCargo = (EditText) findViewById(R.id.txtCargoUser);
-        editTextTelefone = (EditText) findViewById(R.id.txtPhoneUser);
+        nomeCompletoUser = (EditText) findViewById(R.id.txtCadNomeCompletoUser);
+        usuarioUser = (EditText) findViewById(R.id.txtCadUsuarioUser);
+        senhaUser = (EditText) findViewById(R.id.txtCadPasswordUser);
+        cargoUser = (EditText) findViewById(R.id.txtCadCargoUser);
+        telefoneUser = (EditText) findViewById(R.id.txtCadPhoneUser);
 
         btnExcluirUser = (Button) findViewById(R.id.btnExcluirUser);
         btnVoltarUser = (Button) findViewById(R.id.btnVoltarUser);
@@ -61,14 +62,14 @@ public class UsuariosActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 usuario = new Usuario();
-                usuario.setNome(editTextNomeCompleto.getText().toString());
-                usuario.setUsuario(editTextUsuario.getText().toString());
-                usuario.setSenha(editTextSenha.getText().toString());
-                usuario.setTelefone(editTextTelefone.getText().toString());
+                usuario.setNome(nomeCompletoUser.getText().toString());
+                usuario.setUsuario(usuarioUser.getText().toString());
+                usuario.setSenha(senhaUser.getText().toString());
+                usuario.setTelefone(telefoneUser.getText().toString());
 
                 UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
 
-                if (editTextNomeCompleto.length() == 0 || editTextUsuario.length() == 0 || editTextSenha.length() == 0) {
+                if (nomeCompletoUser.length() == 0 || usuarioUser.length() == 0 || senhaUser.length() == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(UsuariosActivity.this);
                     builder.setTitle("Erro ao cadastrar usuario");
                     builder.setMessage("O campo nome ou usuario ou senha nao podem estar vazio");
@@ -91,6 +92,7 @@ public class UsuariosActivity extends AppCompatActivity {
 
                     limparCampos();
                     usuario = null;
+                    atualizaListaUsuarios();
 
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(UsuariosActivity.this);
@@ -122,7 +124,7 @@ public class UsuariosActivity extends AppCompatActivity {
 
                 }else {
 
-                    if (editTextNomeCompleto.length() == 0 || editTextUsuario.length() == 0 || editTextSenha.length() == 0) {
+                    if (nomeCompletoUser.length() == 0 || usuarioUser.length() == 0 || senhaUser.length() == 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(UsuariosActivity.this);
                         builder.setTitle("Erro ao atualizar o usuario");
                         builder.setMessage("Nenhum usuario selecionado para atualizar, os campos nao podem estar vazios.");
@@ -136,10 +138,10 @@ public class UsuariosActivity extends AppCompatActivity {
 
                         UsuarioDAO usuarioDAO = new UsuarioDAO(getApplicationContext());
 
-                        usuario.setNome(editTextNomeCompleto.getText().toString());
-                        usuario.setUsuario(editTextUsuario.getText().toString());
-                        usuario.setSenha(editTextSenha.getText().toString());
-                        usuario.setTelefone(editTextTelefone.getText().toString());
+                        usuario.setNome(nomeCompletoUser.getText().toString());
+                        usuario.setUsuario(usuarioUser.getText().toString());
+                        usuario.setSenha(senhaUser.getText().toString());
+                        usuario.setTelefone(telefoneUser.getText().toString());
 
                         usuarioDAO.updateUsuario(usuario);
 
@@ -152,6 +154,8 @@ public class UsuariosActivity extends AppCompatActivity {
                             }
                         });
                         builder.show();
+                        limparCampos();
+                        atualizaListaUsuarios();
 
                     }
                 }
@@ -189,6 +193,7 @@ public class UsuariosActivity extends AppCompatActivity {
                     builder.show();
                     usuario = null;
                     limparCampos();
+                    atualizaListaUsuarios();
 
 
                 }
@@ -210,24 +215,69 @@ public class UsuariosActivity extends AppCompatActivity {
         });
     }
 
+    public void atualizaListaUsuarios(){
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this);
+        usuarios = usuarioDAO.getUsuarios();
+
+        listUser.setAdapter(
+                new ListAdapterUsuario(this, usuarios)
+        );
+    }
+
     public void populaCampos(int i){
         usuario = usuarios.get(i);
 
-        editTextNomeCompleto.setText(usuario.getNome());
-        editTextUsuario.setText(usuario.getUsuario());
-        editTextSenha.setText(usuario.getSenha());
-        editTextCargo.setText(usuario.getCargo());
-        editTextTelefone.setText(usuario.getTelefone());
+        nomeCompletoUser.setText(usuario.getNome());
+        usuarioUser.setText(usuario.getUsuario());
+        senhaUser.setText(usuario.getSenha());
+        cargoUser.setText(usuario.getCargo());
+        telefoneUser.setText(usuario.getTelefone());
     }
 
     public void limparCampos(){
 
-        editTextNomeCompleto.setText("");
-        editTextUsuario.setText("");
-        editTextSenha.setText("");
-        editTextTelefone.setText("");
-        editTextCargo.setText("");
+        nomeCompletoUser.setText("");
+        usuarioUser.setText("");
+        senhaUser.setText("");
+        telefoneUser.setText("");
+        cargoUser.setText("");
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.meu_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.menu_alunos){
+            Intent menuAluno = new Intent(UsuariosActivity.this, AlunosActivity.class);
+            startActivity(menuAluno);
+            return true;
+        }
+
+        if(id == R.id.menu_professores){
+            Intent menuProfessores = new Intent(UsuariosActivity.this, ProfessorActivity.class);
+            startActivity(menuProfessores);
+            return true;
+        }
+
+        if(id == R.id.menu_turmas){
+            Intent menuTurma = new Intent(UsuariosActivity.this, TurmaActivity.class);
+            startActivity(menuTurma);
+            return true;
+        }
+
+        if(id == R.id.menu_usuario){
+            Intent menuUsuario = new Intent(UsuariosActivity.this, UsuariosActivity.class);
+            startActivity(menuUsuario);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

@@ -23,7 +23,7 @@
         android:text="Nome" />
 
     <TextView
-        android:id="@+id/txtTelefoneAlunoLista"
+        android:id="@+id/txtTelefoneAluno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -33,13 +33,13 @@
         android:text="telefone" />
 
     <TextView
-        android:id="@+id/txtEnderecoAlunoLista"
+        android:id="@+id/txtEnderecoAluno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginRight="10dp"
-        android:layout_toEndOf="@+id/txtTelefoneAlunoLista"
-        android:layout_toRightOf="@+id/txtTelefoneAlunoLista"
+        android:layout_toEndOf="@+id/txtTelefoneAluno"
+        android:layout_toRightOf="@+id/txtTelefoneAluno"
         android:text="Endereco" />
 
     <TextView
@@ -47,8 +47,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/txtEnderecoAlunoLista"
-        android:layout_toRightOf="@+id/txtEnderecoAlunoLista"
+        android:layout_toEndOf="@+id/txtEnderecoAluno"
+        android:layout_toRightOf="@+id/txtEnderecoAluno"
         android:text="Responsavel" />
 
 </RelativeLayout>

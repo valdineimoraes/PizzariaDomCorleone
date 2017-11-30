@@ -5,8 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Model.Turma;
 import bd.CriaBanco;
@@ -25,13 +27,13 @@ public class TurmaDAO {
         CriaBanco criaBanco = new CriaBanco(context);
         SQLiteDatabase db = criaBanco.getWritableDatabase();
 
-
         try{
             ContentValues values = new ContentValues();
             values.put("nome",turma.getNome());
-            values.put("total_alunos", turma.getTotalAlunos());
             values.put("sala", turma.getSala());
-            values.put("professor", String.valueOf(turma.getProfessor()));
+            values.put("total_aluno", turma.getTotalAlunos());
+
+            //values.put("professor", String.valueOf(turma.getProfessor()));
             db.insert(NOME_TABELA,null,values);
             return true;
         }catch (Exception ex){
@@ -53,7 +55,7 @@ public class TurmaDAO {
             values.put("nome",turma.getNome());
             values.put("total_alunos", turma.getTotalAlunos());
             values.put("sala", turma.getSala());
-            values.put("professor", String.valueOf(turma.getProfessor()));
+            //values.put("professor", String.valueOf(turma.getProfessor()));
             db.update(NOME_TABELA, values, where,null);
             return true;
         }catch (Exception ex){
@@ -70,8 +72,7 @@ public class TurmaDAO {
         SQLiteDatabase db = criaBanco.getWritableDatabase();
 
         ArrayList<Turma> turmaArray = new ArrayList<>();
-        String getTurma = "SELECT t.*, p.nome as professor_nome FROM "+ NOME_TABELA + " t join Professores p ON p._id = t.professor ORDER by _id ASC";
-
+        String getTurma = "SELECT * FROM "+ NOME_TABELA +" ORDER BY _id ASC";
         try {
             Cursor cursor = db.rawQuery(getTurma, null);
 
@@ -83,8 +84,8 @@ public class TurmaDAO {
                     u.setNome(cursor.getString(1));
                     u.setTotalAlunos(cursor.getInt(2));
                     u.setSala(cursor.getInt(3));
-                    u.setProfessor(cursor.getInt(4));
-                    u.setProfessorNome(cursor.getString(5));
+                    //u.setProfessor(cursor.getInt(4));
+                    //u.setProfessorNome(String.valueOf(cursor.getString(5)));
                     turmaArray.add(u);
 
                 }while (cursor.moveToNext());
@@ -96,7 +97,33 @@ public class TurmaDAO {
         }finally {
             db.close();
         }
+        Log.v("turmaQtde", String.valueOf(turmaArray.size()));
         return turmaArray;
+    }
+
+    public List<Turma> getTurmasSpinner(){
+
+        List<Turma> list = new ArrayList<Turma>();
+
+        CriaBanco criaBanco = new CriaBanco(context);
+        SQLiteDatabase db = criaBanco.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM "+ NOME_TABELA;
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                list.add(new Turma(cursor.getInt(0), cursor.getString(1), cursor.getInt(2), cursor.getInt(3), cursor.getInt(4)));
+            }while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        Log.v("turmaSpi", "tamanho"+list.size());
+        return list;
+
     }
 
 

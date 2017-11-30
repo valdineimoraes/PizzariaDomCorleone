@@ -1,11 +1,13 @@
 package valdinei.domcorleone;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,7 +26,7 @@ import Model.Professor;
 
 public class ProfessorActivity extends AppCompatActivity {
 
-    EditText editTextCodigoProf, editTextNomeProf, editTextTelefoneProf, editTextFormacaoProf;
+    EditText editTextCodigoProf, nomeProf, telefoneProf, formacaoProf;
     Button btnSalvarProf, btnVoltarProf, btnExcluirProf, btnEditarProf;
     ListView listProf;
     ArrayList<Professor> professores;
@@ -39,9 +41,9 @@ public class ProfessorActivity extends AppCompatActivity {
 
 
         //editTextCodigo = (EditText) findViewById(R.id.txtCodigoUser);
-        editTextNomeProf = (EditText) findViewById(R.id.txtNomeProf);
-        editTextTelefoneProf = (EditText) findViewById(R.id.txtTelefoneProf);
-        editTextFormacaoProf= (EditText) findViewById(R.id.txtFormacaoProf);
+        nomeProf = (EditText) findViewById(R.id.txtCadNomeProf);
+        telefoneProf = (EditText) findViewById(R.id.txtCadTelefoneProf);
+        formacaoProf= (EditText) findViewById(R.id.txtCadFormacaoProf);
 
         btnExcluirProf = (Button) findViewById(R.id.btnExcluirProf);
         btnVoltarProf = (Button) findViewById(R.id.btnVoltarProf);
@@ -61,14 +63,14 @@ public class ProfessorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Professor professor = new Professor();
-                professor.setNome(editTextNomeProf.getText().toString());
-                professor.setTelefone(editTextTelefoneProf.getText().toString());
-                professor.setFormacao(editTextFormacaoProf.getText().toString());
+                professor = new Professor();
+                professor.setNome(nomeProf.getText().toString());
+                professor.setTelefone(telefoneProf.getText().toString());
+                professor.setFormacao(formacaoProf.getText().toString());
 
                 ProfessorDAO professorDAO = new ProfessorDAO(getApplicationContext());
 
-                if (editTextNomeProf.length() == 0 || editTextFormacaoProf.length() == 0) {
+                if (nomeProf.length() == 0 || formacaoProf.length() == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(valdinei.domcorleone.ProfessorActivity.this);
                     builder.setTitle("Erro ao cadastrar professor");
                     builder.setMessage("O campo nome ou formação ou senha nao podem estar vazio");
@@ -91,6 +93,11 @@ public class ProfessorActivity extends AppCompatActivity {
 
                     limparCampos();
                     professor = null;
+                    atualizaListaProfessores();
+
+                    Intent serviceIntent = new Intent(ProfessorActivity.this, ServiceSample.class);
+                    startService(serviceIntent);
+
 
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(valdinei.domcorleone.ProfessorActivity.this);
@@ -122,7 +129,7 @@ public class ProfessorActivity extends AppCompatActivity {
 
                 } else {
 
-                    if (editTextNomeProf.length() == 0 || editTextFormacaoProf.length() == 0) {
+                    if (nomeProf.length() == 0 || formacaoProf.length() == 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(valdinei.domcorleone.ProfessorActivity.this);
                         builder.setTitle("Erro ao atualizar o professor");
                         builder.setMessage("Nenhum professor selecionado para atualizar, os campos nao podem estar vazios.");
@@ -136,9 +143,9 @@ public class ProfessorActivity extends AppCompatActivity {
 
                         ProfessorDAO professorDAO = new ProfessorDAO(getApplicationContext());
 
-                        professor.setNome(editTextNomeProf.getText().toString());
-                        professor.setTelefone(editTextTelefoneProf.getText().toString());
-                        professor.setFormacao(editTextFormacaoProf.getText().toString());
+                        professor.setNome(nomeProf.getText().toString());
+                        professor.setTelefone(telefoneProf.getText().toString());
+                        professor.setFormacao(formacaoProf.getText().toString());
 
                         professorDAO.updateProfessor(professor);
 
@@ -151,6 +158,7 @@ public class ProfessorActivity extends AppCompatActivity {
                             }
                         });
                         builder.show();
+                        atualizaListaProfessores();
 
                     }
                 }
@@ -188,6 +196,7 @@ public class ProfessorActivity extends AppCompatActivity {
                     builder.show();
                     professor = null;
                     limparCampos();
+                    atualizaListaProfessores();
 
 
                 }
@@ -196,8 +205,6 @@ public class ProfessorActivity extends AppCompatActivity {
 
         ProfessorDAO professorDAO = new ProfessorDAO(this);
         professores = professorDAO.getProfessores();
-
-
 
         listProf.setAdapter(
                 new ListAdapterProfessor(this, professores)
@@ -211,23 +218,66 @@ public class ProfessorActivity extends AppCompatActivity {
         });
     }
 
+    public void atualizaListaProfessores(){
+        ProfessorDAO professorDAO = new ProfessorDAO(this);
+        professores = professorDAO.getProfessores();
 
+        listProf.setAdapter(
+                new ListAdapterProfessor(this, professores)
+        );
+    }
 
     public void populaCampos(int i){
         professor = professores.get(i);
 
-        editTextNomeProf.setText(professor.getNome());
-        editTextTelefoneProf.setText(professor.getTelefone());
-        editTextFormacaoProf.setText(professor.getFormacao());
+        nomeProf.setText(professor.getNome());
+        telefoneProf.setText(professor.getTelefone());
+        formacaoProf.setText(professor.getFormacao());
     }
 
     public void limparCampos(){
 
-        editTextNomeProf.setText("");
-        editTextTelefoneProf.setText("");
-        editTextFormacaoProf.setText("");
+        nomeProf.setText("");
+        telefoneProf.setText("");
+        formacaoProf.setText("");
 
     }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.meu_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id == R.id.menu_alunos){
+            Intent menuAluno = new Intent(ProfessorActivity.this, AlunosActivity.class);
+            startActivity(menuAluno);
+            return true;
+        }
+
+        if(id == R.id.menu_professores){
+            Intent menuProfessores = new Intent(ProfessorActivity.this, ProfessorActivity.class);
+            startActivity(menuProfessores);
+            return true;
+        }
+
+        if(id == R.id.menu_turmas){
+            Intent menuTurma = new Intent(ProfessorActivity.this, TurmaActivity.class);
+            startActivity(menuTurma);
+            return true;
+        }
+
+        if(id == R.id.menu_usuario){
+            Intent menuUsuario = new Intent(ProfessorActivity.this, UsuariosActivity.class);
+            startActivity(menuUsuario);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }
 
